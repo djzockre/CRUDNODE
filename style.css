@@ -1,0 +1,144 @@
+/* Estilos generales */
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Bitter', serif;
+    font-size: inherit;
+    color: inherit;
+    box-sizing: border-box;
+    transition: all 0.3;
+    border: none;
+}
+
+*:focus:{
+    outline: none;
+}
+
+body{
+    height: calc(100vh - 80px);
+    background: url('http://3.bp.blogspot.com/-uhVVyUp8UEU/UQfrV7cKjGI/AAAAAAAAi8o/SzqSIA3cspI/s1600/18303-desktop-wallpapers-paris.jpg');
+    background-size: cover;
+}
+h1{
+    text-align: center;
+    font-size: 35px;
+    margin: 80px 0 100px 0;
+    color: #FFF;
+    text-shadow: 0 0 3px #000;
+}
+
+.aligncenter{
+    margin: 0 auto;
+    width: 900px;
+}
+/* Estilos para la tabla */
+table{
+    font-size: 20px;
+    color: #FFF;
+    border: 20px solid #F26522;
+    box-shadow: 0px 0px 3px #000;
+    background: #EF4D02;
+    border-collapse: collapse;
+}
+
+td:first-of-type{
+    cursor: pointer;
+}
+
+td,th{
+    padding: 5px 10px;
+    font-weight: normal;
+    width: 200px;
+    text-align: center;
+    border-right: 3px solid #F26522;
+
+}
+
+/* Estilos en el formulario */
+.form{
+    float: left;
+    width: 300px;
+    padding: 20px;
+    margin-right: 40px;
+    font-size: 20px;
+    box-shadow: 0px 0px 3px #000;
+    background: #f26522;
+}
+
+
+.box{
+    position: relative;
+    overflow: hidden;
+    height: 50px;
+    margin-bottom: 20px;
+    background: #EF4D02;
+}
+.box > input{
+    position: absolute;
+    left:0;
+    top: 0;
+    width: 60%;
+    padding: 13px;
+    transform: translate(-100%);
+}
+/* Transladamos el texto en el input  */
+.box  label{
+    display: inline-block;
+    width: 100%;
+    padding: 13px;
+    cursor: pointer;
+    color: #FFF;
+}
+/* Ponemos los label de color blanco y estilos de padding  */
+
+
+.box.ativo input, input:focus{
+    transform: translate(0);
+}
+.box.ativo label, input:focus ~ label{transform : translateX(60%);}
+.per{ perspective: 800px;}
+a.button:active{
+    transform: rotateX(0deg);
+}
+
+a.button{
+    position: relative;
+    display: block;
+    padding: 13px;
+    margin-bottom: 20px;
+    transform: rotateX(15deg);
+    -webkit-transform: rotateX(15deg);
+    transform-style: preserve-3d;
+    text-align: center;
+    color: #FFF;
+    cursor:pointer;
+    background: #EF4D02;
+}
+a.button:after{
+    position: absolute;
+    left: 0;
+    top:100%;
+    width: 100%;
+    height:40%;
+    content: '';
+    transition: all 0.3s;
+    transform: rotateX(-90deg);
+    transform-origin: 0% 0%;
+    background: #EA2C02;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
