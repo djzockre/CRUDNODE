@@ -1,16 +1,23 @@
 window.addEventListener('load', cargar);
 
-var db = openDatabase("myBD", "1.0", "ejemplo de base", 2 * 1024 * 1024);
+var db = openDatabase("myDB", "1.0", "TiPS Database Example", 2 * 1024 * 1024);
 
-function cargar(){
+
+
+function cargar(){    
+    
     document.getElementById('btn-salvar').addEventListener('click', guardar);
     document.getElementById('btn-deletar').addEventListener('click', deletar);
+    
+    db.transaction(function(tx) {
+       
+        tx.executeSql("CREATE TABLE IF NOT EXISTS tabla ( id INTEGER PRIMARY KEY,nombre TEXT,pwd TEXT, email TEXT)" );
 
-    db.transaction(function(tx){
-        tx.executeSql("CREATE TABLE IF NOT EXISTS tabla (id INTEGER PRIMARY KEY, nombre TEXT, pwd  TEXT, email TEXT)");
     });
+    
     mostrar();
-}
+    
+}   
 
 function guardar(){
     var id = document.getElementById('field-id').value;
@@ -31,25 +38,23 @@ function guardar(){
     inputSHOW(false);
 }
 
-function mostrar(){
+function mostrar(){        
     var table = document.getElementById('tbody-register');
- 
-    db.transaction(function(tx){
-        tx.executeSql('SELECT * FROM tabla',[],function(tx, resultado){
+
+    db.transaction(function(tx) {
+        tx.executeSql('SELECT * FROM tabla', [], function (tx, resultado) {
             var rows = resultado.rows;
             var tr = '';
-            for(var i = 0; i< rows.length; i++){
-                tr += '<tr>';
-                tr += '<td onClick="actualizar()">' + rows[i].nombre + '<td>';
-                tr += '<td>' + rows[i].pwd + '</td>';
-                tr += '<td>' + rows[i].email + '</td>';
-                tr += '</tr>';
+            for(var i = 0; i < rows.length; i++){
+                    tr += '<tr>';
+                    tr += '<td onClick="actualizar(' + rows[i].id + ')">' + rows[i].nombre + '</td>';
+                    tr += '<td>' + rows[i].pwd + '</td>';
+                    tr += '<td>' + rows[i].email + '</td>';
+                    tr += '</tr>';                   
             }
-            table.innerHTML = tr;
-        });
+                table.innerHTML = tr; 
+
+        }, null);
     });
 }
-
-
-
 
